@@ -1,0 +1,14 @@
+names:
+- early_blight
+- healthy
+- late_blight
+nc: 3
+roboflow:
+  license: CC BY 4.0
+  project: bachue-project
+  url: https://universe.roboflow.com/bachue/bachue-project/dataset/1
+  version: 1
+  workspace: bachue
+test: C:\Users\maria\Downloads\Bachue_project\Bachue-project--1\test
+train: C:\Users\maria\Downloads\Bachue_project\Bachue-project--1\train
+val: C:\Users\maria\Downloads\Bachue_project\Bachue-project--1\valid
