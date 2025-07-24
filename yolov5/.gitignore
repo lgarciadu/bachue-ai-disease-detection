@@ -1,0 +1,118 @@
+# ----------------------------------------------
+# ARCHIVOS NECESARIOS PARA EJECUTAR EL MODELO
+# ----------------------------------------------
+
+# Permitir archivos .pt del modelo
+!*.pt
+
+# ----------------------------------------------
+# ARCHIVOS QUE SE DEBEN IGNORAR
+# ----------------------------------------------
+
+# Imágenes y videos grandes
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.tif
+*.tiff
+*.heic
+*.JPG
+*.JPEG
+*.PNG
+*.BMP
+*.TIF
+*.TIFF
+*.HEIC
+*.mp4
+*.mov
+*.MOV
+*.avi
+
+# Archivos y carpetas de datasets comunes
+coco/
+coco128/
+VOC/
+
+# Archivos de configuración y datos innecesarios
+*.data
+*.json
+*.cfg
+!setup.cfg
+!cfg/yolov3*.cfg
+
+# Carpetas temporales y archivos generados
+__pycache__/
+*.py[cod]
+*$py.class
+
+.env
+.venv*/
+env/
+ENV*/
+build/
+dist/
+downloads/
+*.egg-info/
+.eggs/
+*.egg
+*.manifest
+*.spec
+
+# Archivos de pruebas y cobertura
+htmlcov/
+.tox/
+.coverage*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+*.log
+
+# Jupyter checkpoints
+.ipynb_checkpoints
+
+# Archivos de Spyder, PyCharm, JetBrains, etc.
+.idea/
+*.iws
+*.iml
+*.ipr
+*.sublime-*
+.ropeproject/
+.spyderproject
+.spyproject
+.vscode/
+target/
+site/
+
+# Archivos macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+.TemporaryItems
+.apdisk
+
+# wandb logs
+wandb/
+
+# Archivos HTML o PG intermedios
+.html
+.pg
+
+# PyTorch Lightning logs
+lightning_logs/
+
+# Archivos del sistema de seguimiento
+storage.googleapis.com
+
+# Archivos ocultos creados por sistemas o editores
+*.swp
+*.bak
+*.tmp
+
+# ----------------------------------------------
+# FIN
+# ----------------------------------------------
