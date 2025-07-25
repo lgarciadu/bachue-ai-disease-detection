@@ -3,8 +3,17 @@ from fastapi.responses import JSONResponse
 from PIL import Image
 import torch
 import io
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # O especifica ["http://localhost:3000"] (en este momento permite todas las solicitudes CORS)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 MODEL_PATH = "C:/Users/maria/Downloads/Bachue_project/yolov5/runs/train/bachue_yolov5/weights/last.pt"
 model = torch.hub.load("ultralytics/yolov5", "custom", path=MODEL_PATH, force_reload=True)

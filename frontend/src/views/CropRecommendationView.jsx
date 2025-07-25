@@ -15,13 +15,31 @@ const CropRecommendationView = () => {
     setIsModalOpen(false);
   };
 
-  const handleFileSelect = (event) => {
+  //Evento que envia la imagen seleccionada al backend
+  const [result, setResult] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    const handleFileSelect = async (event) => {
     const file = event.target.files[0];
     if (file) {
-      console.log('Archivo seleccionado:', file.name);
-      // Aquí puedes enviar el archivo al backend o mostrar una vista previa
+        setLoading(true);
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+        const response = await fetch('http://localhost:8000/predict/', {
+            method: 'POST',
+            body: formData,
+        });
+        const data = await response.json();
+        setResult(data);
+        } catch (error) {
+        alert('Error al analizar la imagen');
+        }
+        setLoading(false);
     }
-  };
+    };
+
 
   return (
     <div className="bg-green-50 min-h-screen flex flex-col">
@@ -34,7 +52,6 @@ const CropRecommendationView = () => {
           <li>¡Listo! Recibirás recomendaciones automáticamente.</li>
         </ol>
 
-        {/* Botón circular */}
         <button
           onClick={() => setIsModalOpen(true)}
           className="bg-green-500 text-white w-16 h-16 flex items-center justify-center rounded-full shadow-md hover:bg-green-600 transition mx-auto"
@@ -51,6 +68,30 @@ const CropRecommendationView = () => {
             <circle cx="12" cy="13" r="4" stroke="currentColor" strokeWidth="2" fill="none" />
           </svg>
         </button>
+
+        {loading && <p className="text-green-700 mt-6">Analizando imagen...</p>}
+
+        {result && (
+        <div className="bg-white rounded-xl shadow p-6 mt-6 max-w-xl mx-auto">
+            <h2 className="text-lg font-bold text-green-700 mb-2">Resultado:</h2>
+            {result.predicted_classes[0] === "healthy" ? (
+            <div>
+                <p className="font-semibold text-green-600">Planta sana, felicitaciones!!</p>
+                <p className="text-gray-700">{result.info[0]?.description}</p>
+                <p className="text-green-700 font-semibold">{result.info[0]?.treatment}</p>
+            </div>
+            ) : (
+            result.predicted_classes.map((clase, idx) => (
+                <div key={idx} className="mb-4">
+                <p className="font-semibold text-green-600">{clase}</p>
+                <p className="text-gray-700">Confianza: {(result.confidences[idx] * 100).toFixed(2)}%</p>
+                <p className="text-gray-700">{result.info[idx]?.description}</p>
+                <p className="text-green-700 font-semibold">{result.info[idx]?.treatment}</p>
+                </div>
+            ))
+            )}
+        </div>
+        )}
 
         {/* Modal */}
         {isModalOpen && (

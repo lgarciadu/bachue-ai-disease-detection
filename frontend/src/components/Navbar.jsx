@@ -8,7 +8,7 @@ const Navbar = () => {
                 <div className="text-white text-2xl font-bold">Bachue AI</div>
                 <div>
                     <Link to="/" className="text-white text-lg hover:text-green-100 px-4">Nosotros</Link>
-                    <Link to="/crop-recommendation" className="text-white text-lg hover:text-green-100 px-4">Empezar</Link>
+                    <Link to="/inicio" className="text-white text-lg hover:text-green-100 px-4">Empezar</Link>
                 </div>
             </div>
         </nav>

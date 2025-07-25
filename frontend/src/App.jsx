@@ -10,7 +10,7 @@ const App = () => {
             <Navbar />
             <Switch>
                 <Route path="/" exact component={HomeView} />
-                <Route path="/crop-recommendation" component={CropRecommendationView} />
+                <Route path="/inicio" component={CropRecommendationView} />
             </Switch>
         </Router>
     );
